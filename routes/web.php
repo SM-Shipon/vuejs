@@ -14,6 +14,8 @@
 //});
 
 
+//ECMA Script 6 basic controller
+Route::get('java_script_es_six/promise','EsSixController@index');
 
 //vueJs basic controller
 Route::get('vue-basic/hello-world','VueJsController@index');
@@ -33,6 +35,8 @@ Route::get('vue-basic/stater-page','VueJsController@stater_page');
 
 // Advance vueJs route
 Route::get('advance-vue/e-commerce','VueJsController@e_commerce');
+Route::get('advance-vue/components','VueJsController@components');
+Route::get('advance-vue/mailbox','VueJsController@mailbox');
 
 //Dashboard controller
 Route::get('/','DashboardController@index');

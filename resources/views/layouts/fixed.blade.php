@@ -4,16 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> @yield('title') </title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="Free Bootstrap 4 Admin Theme | Pike Admin">
     <meta name="author" content="Pike Web Development - https://www.pikephp.com">
     <!-- Bootstrap CSS -->
-    <link href="{{ asset('public/assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('public/assets/images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.ico') }}">
+    <link href="{{asset('css/app.css')}}" rel="stylesheet">
     <!-- Font Awesome CSS -->
-    <link href="{{ asset('public/assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
-    <link href="{{ asset('public/assets/css/style.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet" type="text/css" />
     <!-- BEGIN CSS for this page -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css"/>
     <!-- END CSS for this page -->
@@ -27,7 +29,7 @@
     @yield('css')
 </head>
 
-<body class="adminbody">
+<body class="admin body">
 <div id="main">
     <!-- top bar navigation -->
     @include('includes.top-navbar')
@@ -52,21 +54,23 @@
 
 </div>
 <!-- END main -->
-<script src="{{ asset('public/assets/js/vue.js')}}"></script>
-<script src="{{ asset('public/assets/js/vue-router.js')}}"></script>
+<script src="{{asset('js/app.js')}}"></script>
+<script src="{{ asset('assets/js/vue.js')}}"></script>
+<script src="{{ asset('assets/js/vue.js')}}"></script>
+<script src="{{ asset('assets/js/vue-router.js')}}"></script>
 
-<script src="{{ asset('public/assets/js/jquery.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/moment.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/modernizr.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/popper.min.js') }}"></script>
-<script src="{{ asset('public/assets/js/bootstrap.min.js')}}"></script>
-<script src="{{ asset('public/assets/js/detect.js')}}"></script>
-<script src="{{ asset('public/assets/js/fastclick.js')}}"></script>
-<script src="{{ asset('public/assets/js/jquery.blockUI.js')}}"></script>
-<script src="{{ asset('public/assets/js/jquery.nicescroll.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/js/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
+<script src="{{ asset('assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.min.js')}}"></script>
+<script src="{{ asset('assets/js/detect.js')}}"></script>
+<script src="{{ asset('assets/js/fastclick.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.blockUI.js')}}"></script>
+<script src="{{ asset('assets/js/jquery.nicescroll.js')}}"></script>
 
 <!-- App js -->
-<script src="{{ asset('public/assets/js/pikeadmin.js') }}"></script>
+<script src="{{ asset('assets/js/pikeadmin.js') }}"></script>
 
 <!-- BEGIN Java Script for this page -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
@@ -81,9 +85,6 @@
 
 </script>
 
-<script>
-
-</script>
 <!-- END Java Script for this page -->
 
 </body>

@@ -100,11 +100,32 @@
                 </a>
 
                 <ul class="list-unstyled">
+                    <li class="{{ isActive('advance-vue/components') }}">
+                        <a href="{{url('advance-vue/components')}}">Components</a>
+                    </li>
+
                     <li class="{{ isActive('advance-vue/e-commerce') }}">
                         <a href="{{url('advance-vue/e-commerce')}}">E-Commerce</a>
                     </li>
+                    <li class="{{ isActive('advance-vue/mailbox') }}">
+                        <a href="{{url('advance-vue/mailbox')}}">Mailbox</a>
+                    </li>
                     <li class="{{ isActive('example/blank_page') }}">
                         <a href="{{url('example/blank_page')}}">Blank Page</a>
+                    </li>
+
+                </ul>
+            </li>
+
+
+            <li class="submenu">
+                <a class="{{ isActive('java_script_es_six*') }}" href="#">
+                    <i class="fa fa-fw fa-copy"></i> <span>ECMAScript 6</span> <span class="menu-arrow"></span>
+                </a>
+
+                <ul class="list-unstyled">
+                    <li class="{{ isActive('java_script_es_six/promise') }}">
+                        <a href="{{url('java_script_es_six/promise')}}">Promise</a>
                     </li>
 
                 </ul>

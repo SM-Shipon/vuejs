@@ -2,7 +2,7 @@
     <!-- LOGO -->
     <div class="headerbar-left">
         <a href="index.html" class="logo">
-            <img alt="Logo" src="{{ asset('public/assets/images/logo.png') }}" />
+            <img alt="Logo" src="{{ asset('assets/images/logo.png') }}" />
             <span>Admin</span></a>
     </div>
 
@@ -112,7 +112,7 @@
                     <!-- item-->
                     <a href="#" class="dropdown-item notify-item">
                         <div class="notify-icon bg-faded">
-                            <img src="{{ asset('public/assets/images/avatars/avatar3.png') }}" alt="img" class="rounded-circle img-fluid">
+                            <img src="{{ asset('assets/images/avatars/avatar3.png') }}" alt="img" class="rounded-circle img-fluid">
                         </div>
                         <p class="notify-details">
                             <b>Michael Cox</b>
@@ -124,7 +124,7 @@
                     <!-- item-->
                     <a href="#" class="dropdown-item notify-item">
                         <div class="notify-icon bg-faded">
-                            <img src="{{ asset('public/assets/images/avatars/avatar4.png') }}" alt="img" class="rounded-circle img-fluid">
+                            <img src="{{ asset('assets/images/avatars/avatar4.png') }}" alt="img" class="rounded-circle img-fluid">
                         </div>
                         <p class="notify-details">
                             <b>Michelle Dolores</b>
@@ -143,7 +143,7 @@
 
             <li class="list-inline-item dropdown notif">
                 <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                    <img src="{{ asset('public/assets/images/avatars/admin.png') }}" alt="Profile image" class="avatar-rounded">
+                    <img src="{{ asset('assets/images/avatars/admin.png') }}" alt="Profile image" class="avatar-rounded">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                     <!-- item-->
