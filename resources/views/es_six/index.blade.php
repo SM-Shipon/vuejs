@@ -24,11 +24,20 @@
 
 
             <div class="row">
-                <div class="col-xl-12">
+                <div class="col-xl-8 offset-2">
                     <button id="shipon">Click me</button>
-                   <ul id="user_data">
+                  <table class="table table-bordered" >
+                      <thead>
+                      <tr>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Email</th>
+                      </tr>
+                      </thead>
 
-                   </ul>
+                      <tbody id="user_data">
+
+                      </tbody>
+                  </table>
                 </div>
             </div>
 

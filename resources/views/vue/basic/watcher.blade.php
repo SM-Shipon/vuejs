@@ -30,6 +30,17 @@
 					</ol>
 				</div>
 			</div>
+
+			<div class="">
+				<h3 class="text-center"> Excercise Watcher & Computed Properties </h3>
+				 <h5>Computed Property</h5>
+				<ol>
+					<li v-for="employee in formattedEmployee ">@{{ employee }}</li>
+				</ol>
+
+				<button class="btn btn-success btn-sm" v-on:click="addEmployee">Add Employee</button>
+
+			</div>
 			<!-- end row -->
 		</div>
 		<!-- END container-fluid -->
@@ -46,7 +57,19 @@
 			searchQuery:'',
             isSearching:false,
             lists:[],
+			employees:[
+			    {name:'Rimon', post:'Web Designer'},
+			    {name:'Maruf', post:'Wordpress Developer'},
+			    {name:'Faisal', post:'Laravel Developer'},
+			    ]
         },
+		methods:{
+            addEmployee:function () {
+				this.employees.push(
+					{name:"Anik", post:"Graphics Designer "}
+				);
+            }
+		},
        watch:{
            searchQuery:function (query) {
                this.isSearching = true;
@@ -57,8 +80,21 @@
                    vm.isSearching = false;
 
                },3000)
-           }  
-	   }
+           } ,
+           employees:function (employees) {
+			   var newEmployee = employees[employees.length - 1];
+			   alert(newEmployee.name + '  ( ' +newEmployee.post +')');
+           }
+	   },
+		computed:{
+           formattedEmployee:function () {
+               return this.employees.map(function (data) {
+			  return data.name  + ' ( '+data.post +')' ;
+			 })
+           }
+		}
+
+
 
     });
 </script>

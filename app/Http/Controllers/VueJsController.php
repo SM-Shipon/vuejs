@@ -48,6 +48,16 @@ class VueJsController extends Controller
     Public function e_commerce(){
         return view('vue.advance.e-commerce');
     }
+
+    Public function components(){
+        return view('vue.advance.components');
+    }
+
+    Public function mailbox(){
+        return view('vue.advance.mailbox');
+    }
+
+
     Public function stater_page(){
         return view('vue.stater-page');
     }
