@@ -26,7 +26,9 @@ class StudentController extends Controller
     public function view()
     {
         $students = Student::all();
-     return response()->json($students);
+        return response()->json([
+            'students'=>$students
+        ],200);
     }
     public function edit($id)
     {

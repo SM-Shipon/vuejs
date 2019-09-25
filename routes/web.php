@@ -16,18 +16,18 @@
 
 //Dashboard controller
 Route::get('/','DashboardController@index');
-Route::get('/{anypath}','DashboardController@index')->where('path','*');
-
+//Route::get('/{anypath}','DashboardController@index')->where('path','*');
+//
 
 Route::get('vue-basic/blank-page','DashboardController@blank_page');
 
 
 Route::get('student','StudentController@index');
 Route::post('/student-store','StudentController@store');
-Route::get('student-view','StudentController@index');
+Route::get('student-view','StudentController@view');
 Route::get('student-edit/{id}','StudentController@edit');
 Route::post('student-update/{id}','StudentController@update');
-Route::post('student-delete/{id}','StudentController@delete');
+Route::get('student-delete/{id}','StudentController@delete');
 
 
 Route::get('employee','EmployeeController@index');

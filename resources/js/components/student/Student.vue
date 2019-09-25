@@ -82,18 +82,20 @@
                                     <th>SL </th>
                                     <th>Name</th>
                                     <th>Phone</th>
+                                    <th>Address</th>
                                     <th>Roll</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
 
-                                <tr v-for="student in students">
+                                <tr v-for="(student, i) in getAllStudent">
+                                    <td>{{i+1}}</td>
                                     <td>{{student.name}}</td>
                                     <td>{{student.phone}}</td>
                                     <td>{{student.address}}</td>
                                     <td>{{student.roll}}</td>
                                     <td>
-                                        <a :href="'student-edit/'+student.id">Edit</a> | <a href="javascript:;" @click.prevent="studentDelete(student.id, index)">Delete</a>
+                                        <a :href="'student-edit/'+student.id">Edit</a> | <a href="javascript:;" @click.prevent="studentDelete(student.id)">Delete</a>
                                     </td>
                                 </tr>
 
@@ -114,13 +116,12 @@
 </template>
 
 <script>
-
     export default {
         name: "Student",
 
         data(){
             return {
-                students : {},
+                students : null,
                 form: new Form({
                     name: '',
                     phone: '',
@@ -132,19 +133,24 @@
 
         mounted() {
             console.log('Component mounted.')
-            this.getStudent();
+            this.$store.dispatch("allStudent")
 
+        },
+
+        computed:{
+            getAllStudent(){
+               return this.$store.getters.getStudent
+            }
         },
 
         methods:{
 
-            getStudent() {
-                axios.get('/student-view')
-                    .then(response => {
+//            getStudent() {
+//                axios.get('/student-view')
+//                    .then(response => {
 //                        this.students = response.data;
-//                        console.log( this.students);
-                    });
-            },
+//                    });
+//            },
 
             storeStudent(){
 
@@ -154,8 +160,6 @@
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
                         console.log(response.data);
-
-                            this.$router.push('/student');
                         toast.fire({
                             type: 'success',
                             title: 'Student Added successfully'
@@ -164,6 +168,8 @@
                     .catch(()=>{
 
                     })
+                this.$store.dispatch("allStudent")
+
             },
 
 
@@ -186,18 +192,36 @@
 //                    });
 //            },
 //
+
+            studentDelete(id){
+                axios.get('/student-delete/'+id)
+                    .then( () =>{
+                        this.students = []
+                        this.$store.dispatch("allStudent")
+                        toast.fire({
+                            type: 'success',
+                            title: 'Student Deleted successfully'
+                        })
+                    })
+               },
+
+
+
 //            studentDelete(id, index){
-////                alert('are you want to delete this?')
 //                axios.post('/student-delete/'+id, {
 //                })
 //                    .then(function (response) {
 //                        this.students.data.splice(index, id);
-//                        location.reload();
+////                        return this.$store.getters.getStudent
 //                    })
 //                    .catch(function (error) {
 //                        console.log(error,'eorro');
 //                    });
+//               this.$store.dispatch("allStudent")
+//
+//
 //            },
+
 
 
         }
