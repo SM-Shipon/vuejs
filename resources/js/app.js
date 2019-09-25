@@ -11,7 +11,6 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 import {routes} from './routes';
 
-
 Vue.component('main-body', require('./components/Main.vue').default);
 Vue.component('student-edit', require('./components/student/StudentEdit.vue').default);
 
