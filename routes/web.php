@@ -14,6 +14,26 @@
 //});
 
 
+//Dashboard controller
+Route::get('/','DashboardController@index');
+Route::get('/{anypath}','DashboardController@index')->where('path','*');
+
+
+Route::get('vue-basic/blank-page','DashboardController@blank_page');
+
+
+Route::get('student','StudentController@index');
+Route::post('/student-store','StudentController@store');
+Route::get('student-view','StudentController@index');
+Route::get('student-edit/{id}','StudentController@edit');
+Route::post('student-update/{id}','StudentController@update');
+Route::post('student-delete/{id}','StudentController@delete');
+
+
+Route::get('employee','EmployeeController@index');
+
+
+
 //ECMA Script 6 basic controller
 Route::get('java_script_es_six/promise','EsSixController@index');
 
@@ -37,11 +57,6 @@ Route::get('vue-basic/stater-page','VueJsController@stater_page');
 Route::get('advance-vue/e-commerce','VueJsController@e_commerce');
 Route::get('advance-vue/components','VueJsController@components');
 Route::get('advance-vue/mailbox','VueJsController@mailbox');
-
-//Dashboard controller
-Route::get('/','DashboardController@index');
-Route::get('vue-basic/blank-page','DashboardController@blank_page');
-Route::get('/{anypath}','DashboardController@index')->where('path','*');
 
 //FormsController controller
 Route::get('form/general','Pike\FormsController@form_general');

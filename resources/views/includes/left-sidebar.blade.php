@@ -1,17 +1,30 @@
-<style>
-    #sidebar-menu ul ul li.active a {
-        /*color: #f3f3f3;*/
-        /*background: #3A5F8C;*/
-    }
-</style>
+{{--<style>--}}
+    {{--#sidebar-menu ul ul li.active a {--}}
+        {{--/*color: #f3f3f3;*/--}}
+        {{--/*background: #3A5F8C;*/--}}
+    {{--}--}}
+{{--</style>--}}
 <div class="sidebar-inner leftscroll">
     <div id="sidebar-menu">
         <ul>
             <li class="submenu">
-                <a class="{{ isActive('/') }}" href="{{ url('/') }}">
+                <router-link class="/" to="/">
                     <i class="fa fa-fw fa-bars"></i>
                     <span> Dashboard </span>
-                </a>
+                </router-link>
+            </li>
+            <li class="submenu">
+                <router-link class="student" to="/student">
+                    <i class="fa fa-fw fa-bars"></i>
+                    <span> Student </span>
+                </router-link>
+            </li>
+
+            <li class="submenu">
+                <router-link class="employee" to="/employee">
+                    <i class="fa fa-fw fa-bars"></i>
+                    <span> Employee </span>
+                </router-link>
             </li>
 
           <li class="submenu">

@@ -30,7 +30,7 @@
 </head>
 
 <body class="admin body">
-<div id="main">
+<div id="app">
     <!-- top bar navigation -->
     @include('includes.top-navbar')
     <!-- End Navigation -->
@@ -43,7 +43,7 @@
     <!-- End Sidebar -->
 
 
-    <div class="content-page">
+    <div class="content-page" >
         @yield('content')
     </div>
     <!-- END content-page -->

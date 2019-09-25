@@ -23,11 +23,10 @@ $("#shipon").click(function(){
             document.getElementById("user_data").innerHTML = html;
         })
         .catch((err) => console.log(err));
-});
+    });
 
-//
-//
-//
+
+
 // $("#shipon").click(function(){
 //     fetch('https://jsonplaceholder.typicode.com/users')
 //         .then((response) => {
