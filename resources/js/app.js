@@ -10,6 +10,14 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 import {routes} from './routes';
+import Vuex from 'vuex';
+Vue.use(Vuex);
+window.axios = require('axios');
+//vue support
+import dataStorage from './store/index';
+const store = new Vuex.Store(
+    dataStorage
+);
 
 Vue.component('main-body', require('./components/Main.vue').default);
 Vue.component('student-edit', require('./components/student/StudentEdit.vue').default);
@@ -35,11 +43,12 @@ window.toast = toast;
 
 const router = new VueRouter({
     routes, // short for `routes: routes`
-    mode: 'history',
+    mode: 'hash',//instead of 'history'
 });
 
 
 const app = new Vue({
     el: '#app',
-    router
+    router,
+    store
 });
