@@ -1,5 +1,6 @@
 /*jshint esversion: 6 */
 /* jshint node: true */
+"use strict";
 const axios = require('axios');
     export default {
        state:{
@@ -17,11 +18,11 @@ const axios = require('axios');
                         context.commit('students',response.data.students);//students comes from controller
                     });
 
-            },
+            }
         },
 
-        mutations: {
-            //students comes from actions
+        mutations:{
+            //students() comes from actions
             students(state, payload){
                 return state.students = payload;
             },

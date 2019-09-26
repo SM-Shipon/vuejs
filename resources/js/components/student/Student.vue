@@ -160,6 +160,7 @@
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
                         console.log(response.data);
+                        //this.$router.push('/student'); //redirect to another component ,here '/student' is route
                         toast.fire({
                             type: 'success',
                             title: 'Student Added successfully'
