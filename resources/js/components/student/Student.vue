@@ -22,7 +22,8 @@
             <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 col-xl-5 ">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h3><i class="fa fa-check-square-o"></i> Create Student</h3>
+                        <h3 v-if="action"><i class="fa fa-check-square-o"></i> Edit Student</h3>
+                        <h3 v-else><i class="fa fa-check-square-o"></i> Create Student</h3>
                     </div>
                     <div class="card-body">
                         <form id="myForm">
@@ -53,10 +54,10 @@
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary" @click.prevent="storeStudent()" > Save </button>
+                            <button v-if="action" type="submit" class="btn btn-primary" @click.prevent="updateStudent(studentId)" > Update </button>
+                            <button v-else type="submit" class="btn btn-primary" @click.prevent="storeStudent()" > Save </button>
                         </form>
-                    </div>
-                </div><!-- end card-->
+                    </div></div><!-- end card-->
             </div>
 
 
@@ -72,7 +73,6 @@
                         </div>
 
                     </div>
-
                     <div class="card-body" id="collapseExample" >
 
                         <div class="table-responsive table-bordered">
@@ -95,7 +95,7 @@
                                     <td>{{student.address}}</td>
                                     <td>{{student.roll}}</td>
                                     <td>
-                                        <a :href="'student-edit/'+student.id">Edit</a> | <a href="javascript:;" @click.prevent="studentDelete(student.id)">Delete</a>
+                                        <a href="javascript:;" @click.prevent="studentEdit(student.id)">Edit</a> | <a href="javascript:;" @click.prevent="studentDelete(student.id)">Delete</a>
                                     </td>
                                 </tr>
 
@@ -122,6 +122,8 @@
         data(){
             return {
                 students : null,
+                action : false,
+                studentId :null,
                 form: new Form({
                     name: '',
                     phone: '',
@@ -194,18 +196,40 @@
 //            },
 //
 
+            studentEdit(id){
+                axios.get('/student-edit/'+id)
+                    .then( (response) =>{
+                        console.log(response.data.action);
+                        this.form.fill(response.data.student)
+                        this.action = true;
+                        this.studentId = response.data.student.id;
+                        this.$store.dispatch("allStudent")
+                    })
+               },
+            updateStudent(id){
+                this.form.post('/student-update/'+id)
+                    .then( () =>{
+                        Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.action =false;
+                        toast.fire({
+                            type: 'success',
+                            title: 'Student Updated successfully'
+                        })
+                    })
+                this.$store.dispatch("allStudent")
+               },
             studentDelete(id){
                 axios.get('/student-delete/'+id)
                     .then( () =>{
-                        this.students = []
-                        this.$store.dispatch("allStudent")
+                        Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.action = false;
                         toast.fire({
                             type: 'success',
                             title: 'Student Deleted successfully'
                         })
                     })
-               },
-
+                this.$store.dispatch("allStudent")
+            },
 
 
 //            studentDelete(id, index){

@@ -27,18 +27,22 @@ class StudentController extends Controller
     {
         $students = Student::all();
         return response()->json([
-            'students'=>$students
+            'students'=>$students,
         ],200);
     }
     public function edit($id)
     {
         $student = Student::find($id);
-        return view('student.edit',compact('student'));
+        return response()->json([
+            'student'=>$student,
+              'action'=>'update'
+        ],200);
     }
 
     public function update(Request $request,$id)
     {
-        $student = Student::find($id)->update($request->all());
+
+       Student::find($id)->update($request->all());
         return 'updated';
     }
 
