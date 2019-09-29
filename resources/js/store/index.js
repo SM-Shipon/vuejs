@@ -5,10 +5,15 @@ const axios = require('axios');
     export default {
        state:{
            students:[],
+           employees:[],
        },
         getters:{
             getStudent(state){
               return state.students;
+            },
+
+            getEmployee(state){
+                return state.students;
             }
         },
         actions:{
@@ -18,6 +23,13 @@ const axios = require('axios');
                         context.commit('students',response.data.students);//students comes from controller
                     });
 
+            },
+            allEmployee(context){
+                axios.get('/employee-view')
+                    .then((response)=>{
+                        context.commit('employees',response.data.employees);//students comes from controller
+                    });
+
             }
         },
 
@@ -25,6 +37,9 @@ const axios = require('axios');
             //students() comes from actions
             students(state, payload){
                 return state.students = payload;
+            },
+            employees(state, payload){
+                return state.employees = payload;
             },
         }
 

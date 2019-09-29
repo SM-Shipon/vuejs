@@ -31,6 +31,13 @@ Route::get('student-delete/{id}','StudentController@delete');
 
 
 Route::get('employee','EmployeeController@index');
+Route::post('/employee-store','EmployeeController@store');
+Route::get('employee-view','EmployeeController@view');
+Route::get('employee-edit/{id}','EmployeeController@edit');
+Route::post('employee-update/{id}','EmployeeController@update');
+Route::get('employee-delete/{id}','EmployeeController@delete');
+
+
 
 
 
