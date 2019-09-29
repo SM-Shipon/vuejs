@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Intervention\Image\Image;
 
 class EmployeeController extends Controller
 {
@@ -15,15 +17,28 @@ class EmployeeController extends Controller
 
     public function store(Request $request){
 
-        dd($request->all());
-
         $this->validate($request,[
             'name'=>'required|min:2|max:50',
             'phone'=>'required',
-            'email'=>'required',
             'address'=>'required',
+            'image'=>'required',
         ]);
-        Employee::create($request->all());
+        $strpos = strpos($request->image,';');
+        $sub = substr($request->image,0,$strpos);
+        $ex = explode('/',$sub)[1];
+        $name = time().".".$ex;
+
+        $img = \Intervention\Image\Facades\Image::make($request->image)->resize(200, 200);
+        $upload_path = public_path()."/images/";
+        $img->save($upload_path.$name);
+
+        $post = new Employee;
+        $post->name = $request->name;
+        $post->phone = $request->phone;
+        $post->email = $request->email;
+        $post->address = $request->address;
+        $post->image = $name;
+        $post->save();
         return ['message'=>'OK'];
     }
 

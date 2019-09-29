@@ -16,7 +16,7 @@
 
 //Dashboard controller
 Route::get('/','DashboardController@index');
-//Route::get('/{anypath}','DashboardController@index')->where('path','*');
+Route::get('/{anypath}','DashboardController@index')->where('path','*');
 //
 
 Route::get('vue-basic/blank-page','DashboardController@blank_page');
@@ -24,15 +24,15 @@ Route::get('vue-basic/blank-page','DashboardController@blank_page');
 
 Route::get('student','StudentController@index');
 Route::post('/student-store','StudentController@store');
-Route::get('student-view','StudentController@view');
+Route::post('student-view','StudentController@view');
 Route::get('student-edit/{id}','StudentController@edit');
 Route::post('student-update/{id}','StudentController@update');
 Route::get('student-delete/{id}','StudentController@delete');
 
 
 Route::get('employee','EmployeeController@index');
-Route::post('/employee-store','EmployeeController@store');
-Route::get('employee-view','EmployeeController@view');
+Route::post('employee-store','EmployeeController@store');
+Route::post('employee-view','EmployeeController@view');
 Route::get('employee-edit/{id}','EmployeeController@edit');
 Route::post('employee-update/{id}','EmployeeController@update');
 Route::get('employee-delete/{id}','EmployeeController@delete');

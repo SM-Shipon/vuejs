@@ -141,7 +141,7 @@
 
         computed:{
             getAllStudent(){
-               return this.$store.getters.getStudent
+                return this.$store.getters.getStudent
             }
         },
 
@@ -161,6 +161,8 @@
                 this.form.post('/student-store')
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.$store.dispatch("allStudent")
+
                         console.log(response.data);
                         //this.$router.push('/student'); //redirect to another component ,here '/student' is route
                         toast.fire({
@@ -171,7 +173,6 @@
                     .catch(()=>{
 
                     })
-                this.$store.dispatch("allStudent")
 
             },
 
@@ -205,7 +206,7 @@
                         this.studentId = response.data.student.id;
                         this.$store.dispatch("allStudent")
                     })
-               },
+            },
             updateStudent(id){
                 this.form.post('/student-update/'+id)
                     .then( () =>{
@@ -217,18 +218,19 @@
                         })
                     })
                 this.$store.dispatch("allStudent")
-               },
+            },
             studentDelete(id){
                 axios.get('/student-delete/'+id)
                     .then( () =>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.$store.dispatch("allStudent")
                         this.action = false;
                         toast.fire({
                             type: 'success',
                             title: 'Student Deleted successfully'
                         })
                     })
-                this.$store.dispatch("allStudent")
+
             },
 
 
