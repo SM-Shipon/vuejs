@@ -27,6 +27,13 @@
                 </router-link>
             </li>
 
+            <li class="submenu">
+                <router-link class="city" to="/city">
+                    <i class="fa fa-fw fa-bars"></i>
+                    <span> City </span>
+                </router-link>
+            </li>
+
           <li class="submenu">
                 <a class="{{ isActive('vue-basic*') }}" href="#">
                     <i class="fa fa-fw fa-table"></i>

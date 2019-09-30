@@ -6,6 +6,7 @@
 import Dashboard from './components/Dashboard.vue';
 import Student from './components/student/Student.vue';
 import Employee from './components/employee/Employee.vue';
+import City from './components/City.vue';
 
 export const routes = [
     {
@@ -21,5 +22,9 @@ export const routes = [
     {
         path: '/employee',
         component: Employee
+    },
+    {
+        path: '/city',
+        component: City
     },
 ];

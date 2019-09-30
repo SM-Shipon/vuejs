@@ -6,6 +6,9 @@ export default {
     state:{
         students:[],
         employees:[],
+        countries:[],
+        districts:[],
+        cities:[],
     },
     getters:{
         getStudent(state){
@@ -14,6 +17,12 @@ export default {
 
         getEmployee(state){
             return state.employees;
+        },
+        getCountry(state){
+            return state.countries;
+        },
+        getCity(state){
+            return state.cities;
         }
     },
     actions:{
@@ -29,6 +38,18 @@ export default {
                 .then((response)=>{
                     context.commit('employees',response.data.employees);//students comes from controller
                 });
+        },
+        allCountry(context){
+            axios.post('/get-country')
+                .then((response)=>{
+                    context.commit('countries',response.data.countries);//students comes from controller
+                });
+        },
+        allCity(context){
+            axios.post('/city-view')
+                .then((response)=>{
+                    context.commit('cities',response.data.cities);//students comes from controller
+                });
         }
     },
 
@@ -39,6 +60,13 @@ export default {
         },
         employees(state, payload){
             return state.employees = payload;
+        },
+
+        countries(state, payload){
+            return state.countries = payload;
+        },
+        cities(state, payload){
+            return state.cities = payload;
         },
     }
 
