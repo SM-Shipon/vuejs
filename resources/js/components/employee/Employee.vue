@@ -73,7 +73,6 @@
                         </form>
                     </div></div><!-- end card-->
             </div>
-
             <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-xl-8">
                 <div class="card mb-3">
                     <div class="card-header">
@@ -193,6 +192,7 @@
                 this.form.post('/employee-store')
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
+
                         this.$store.dispatch("allEmployee")
                         console.log(response.data);
                         //this.$router.push('/student'); //redirect to another component ,here '/student' is route
@@ -224,6 +224,7 @@
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
                         this.$store.dispatch("allEmployee")
                         this.action =false;
+                        this.form.image= '';
                         toast.fire({
                             type: 'success',
                             title: 'Employee Updated successfully'

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use Intervention\Image\Image;
+use Intervention\Image\Facades\Image;
 
 class EmployeeController extends Controller
 {
@@ -28,7 +28,7 @@ class EmployeeController extends Controller
         $ex = explode('/',$sub)[1];
         $name = time().".".$ex;
 
-        $img = \Intervention\Image\Facades\Image::make($request->image)->resize(200, 200);
+        $img = Image::make($request->image)->resize(200, 200);
         $upload_path = public_path()."/images/";
         $img->save($upload_path.$name);
 
