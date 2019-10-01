@@ -21,6 +21,9 @@ export default {
         getCountry(state){
             return state.countries;
         },
+        getDistrict(state){
+            return state.districts;
+        },
         getCity(state){
             return state.cities;
         }
@@ -45,6 +48,12 @@ export default {
                     context.commit('countries',response.data.countries);//students comes from controller
                 });
         },
+        allDistrict(context){
+            axios.post('/district')
+                .then((response)=>{
+                    context.commit('districts',response.data.districts);//students comes from controller
+                });
+        },
         allCity(context){
             axios.post('/city-view')
                 .then((response)=>{
@@ -67,6 +76,9 @@ export default {
         },
         cities(state, payload){
             return state.cities = payload;
+        },
+        districts(state, payload){
+            return state.districts = payload;
         },
     }
 

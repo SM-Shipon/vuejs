@@ -49,6 +49,14 @@ class CityController extends Controller
             'action'=>'update'
         ],200);
     }
+    public function district()
+    {
+        $districts= District::all();
+        return response()->json([
+            'districts'=>$districts,
+            'action'=>'update'
+        ],200);
+    }
 
     public function update(Request $request,$id)
     {

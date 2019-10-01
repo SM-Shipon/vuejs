@@ -43,13 +43,14 @@ Route::get('employee-delete/{id}','EmployeeController@delete');
 Route::get('city','CityController@index');
 Route::post('/store-city','CityController@store');
 Route::post('get-country','CityController@get_country');
+Route::post('district','CityController@district');
 Route::get('get-district/{country_id}','CityController@get_district');
 
 
 Route::post('city-view','CityController@view');
 Route::get('city-edit/{id}','CityController@edit');
 Route::post('city-update/{id}','CityController@update');
-Route::get('city-delete/{id}','CityController@delete');
+Route::get('delete-city/{id}','CityController@delete');
 
 //ECMA Script 6 basic controller
 Route::get('java_script_es_six/promise','EsSixController@index');

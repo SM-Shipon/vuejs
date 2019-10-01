@@ -22,7 +22,7 @@
             <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 ">
                 <div class="card mb-3">
                     <div class="card-header">
-                        <h3 v-if="action"><i class="fa fa-check-square-o"></i> Edit City</h3>
+                        <h3 v-if="sm"><i class="fa fa-check-square-o"></i> Edit City</h3>
                         <h3 v-else><i class="fa fa-check-square-o"></i> Add City</h3>
                     </div>
                     <div class="card-body">
@@ -42,9 +42,9 @@
                             <div class="form-row">
                                 <div class=" col-md-12 form-group ">
                                     <label>District:</label>
-                                    <select  name="district" class="form-control" :class="{ 'is-invalid': form.errors.has('district_id') }" v-model="form.district_id">
-                                        <option disabled value="">Select District</option>
-                                        <option :value="district.id" v-for="district in districts">{{district.name}}</option>
+                                    <select  class="form-control" :class="{ 'is-invalid': form.errors.has('district_id') }" v-model="form.district_id">
+                                        <option  value="">Select District</option>
+                                        <option :value="district.id" v-for="district in action ? getAllDistrict :districts">{{district.name}}</option>
 
                                     </select>
                                 </div>
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
 
-                            <button v-if="action" type="submit" class="btn btn-primary" @click.prevent="updateCity(cityId)" > Update </button>
+                            <button v-if="sm" type="submit" class="btn btn-primary" @click.prevent="updateCity(cityId)" > Update </button>
                             <button v-else type="submit" class="btn btn-primary" @click.prevent="storeCity" > Save </button>
                         </form>
                     </div></div><!-- end card-->
@@ -96,7 +96,7 @@
                                     <td v-if="city.district">{{city.district.name}}</td>
                                     <td>{{city.name}}</td>
                                     <td>
-                                      <a href="javascript:;" @click.prevent="editCity(city.id)">Edit</a> | <a href="javascript:;" @click.prevent="cityDelete(city.id)">Delete</a>
+                                      <a href="javascript:" @click.prevent="editCity(city.id)">Edit</a> | <a href="javascript:" @click.prevent="deleteCity(city.id)">Delete</a>
                                     </td>
                                 </tr>
 
@@ -125,10 +125,11 @@
                 countries : null,
                 districts : null,
                 action : false,
+                sm : false,
                 cityId :null,
                 form: new Form({
                     country_id: '',
-                    district_id: '',
+                    district_id:'',
                     name: '',
 
 
@@ -139,6 +140,7 @@
 
             this.$store.dispatch("allCountry")
             this.$store.dispatch("allCity")
+            this.$store.dispatch("allDistrict")
 
         },
 
@@ -152,17 +154,25 @@
 
                 return this.$store.getters.getCity
 
+            },
+            getAllDistrict(){
+
+                return this.$store.getters.getDistrict
+
             }
         },
 
         methods:{
 
             onChange(event) {
+
                 let country_id = this.form.country_id;
+                this.action = false;
                axios.get('get-district/'+country_id)
                    .then((response)=>{
                       this.districts= response.data.districts;
                        console.log(response.data.districts);
+//                       console.log(this.cityId);
                    })
 
             },
@@ -187,9 +197,11 @@
             editCity(id){
                 axios.get('/city-edit/'+id)
                     .then( (response) =>{
-                        console.log(response.data.action);
+
                         this.form.fill(response.data.city)
+                        console.log(response.data.city);
                         this.action = true;
+                        this.sm = true;
                         this.cityId = response.data.city.id;
                         this.$store.dispatch("allCity")
                     })
@@ -208,7 +220,7 @@
 
             },
             deleteCity(id){
-                axios.get('/city-delete/'+id)
+                axios.get('/delete-city/'+id)
                     .then( () =>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
                         this.$store.dispatch("allCity")

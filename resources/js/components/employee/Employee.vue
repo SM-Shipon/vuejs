@@ -192,7 +192,7 @@
                 this.form.post('/employee-store')
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
-
+                        this.form.image= '';
                         this.$store.dispatch("allEmployee")
                         console.log(response.data);
                         //this.$router.push('/student'); //redirect to another component ,here '/student' is route
@@ -222,9 +222,10 @@
                 this.form.post('/employee-update/'+id)
                     .then( () =>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.form.image= '';
                         this.$store.dispatch("allEmployee")
                         this.action =false;
-                        this.form.image= '';
+
                         toast.fire({
                             type: 'success',
                             title: 'Employee Updated successfully'
@@ -236,7 +237,9 @@
                 axios.get('/employee-delete/'+id)
                     .then( () =>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
+                        this.form.image= '';
                         this.$store.dispatch("allEmployee")
+
                         this.action = false;
                         toast.fire({
                             type: 'success',
