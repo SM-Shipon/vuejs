@@ -59,7 +59,7 @@
                                 <div class="col-md-8 form-group ">
                                     <label>Image:</label>
 
-                                    <input v-on:change="onChange($event)" name="form.image" type="file" :class="{ 'is-invalid': form.errors.has('image') }">
+                                    <input v-on:change="onChange($event)" ref="myFileInput" name="form.image" type="file" :class="{ 'is-invalid': form.errors.has('image') }">
                                     <has-error :form="form" field="image"></has-error>
                                 </div>
                                 <div class="col-md-4 form-group ">
@@ -192,7 +192,7 @@
                 this.form.post('/employee-store')
                     .then((response)=>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
-                        this.form.image= '';
+                        this.$refs.myFileInput.value = '';//Reset Input File
                         this.$store.dispatch("allEmployee")
                         console.log(response.data);
                         //this.$router.push('/student'); //redirect to another component ,here '/student' is route
@@ -222,7 +222,7 @@
                 this.form.post('/employee-update/'+id)
                     .then( () =>{
                         Object.assign(this.$data, this.$options.data.call(this));//reset form
-                        this.form.image= '';
+                        this.$refs.myFileInput.value = '';//Reset Input File
                         this.$store.dispatch("allEmployee")
                         this.action =false;
 
@@ -230,6 +230,7 @@
                             type: 'success',
                             title: 'Employee Updated successfully'
                         })
+
                     })
 
             },

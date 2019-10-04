@@ -34,7 +34,21 @@
                 </router-link>
             </li>
 
-          <li class="submenu">
+
+            <li class="submenu">
+                <router-link class="city" to="/point-of-sale">
+                    <i class="fa fa-fw fa-bars"></i>
+                    <span> Point Of Sale </span>
+                </router-link>
+            </li>
+            <li class="submenu">
+                <router-link class="city" to="/point-of-sale2">
+                    <i class="fa fa-fw fa-bars"></i>
+                    <span> Point Of Sale2 </span>
+                </router-link>
+            </li>
+
+            <li class="submenu">
                 <a class="{{ isActive('vue-basic*') }}" href="#">
                     <i class="fa fa-fw fa-table"></i>
                     <span> Basic VueJs </span> <span class="menu-arrow"></span>

@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@fortawesome/vue-fontawesome": "^0.1.7",
         "sweetalert2": "^8.17.6",
         "vform": "^1.0.1",
         "vue-router": "^3.1.3",
