@@ -28,36 +28,37 @@
                     <div class="card-body">
                         <form   class="needs-validation" id="validated-form"  @submit.prevent="addToCart">
                             <div class="form-row">
-                                <div class=" col-md-6 form-group ">
-                                    <label>Name:</label>
-                                    <input type="text"  v-model="name" name="name" class="form-control" required>
-                                    <div class="invalid-feedback">
-                                        Valid first name is required.
-                                    </div>
-                                </div>
-                                <div class="col-md-6 form-group ">
-                                    <label>Phone:</label>
-                                    <input type="text"  v-model="phone" name="phone" class="form-control" required>
+                                <div class=" col-md-12 form-group ">
+                                    <label>Product Code:</label>
+                                    <input type="text"  v-model="pro_code"  class="form-control" required>
                                 </div>
                             </div>
+                            <div class="form-row">
+                                <div class="col-md-12 form-group ">
+                                    <label>Product Name:</label>
+                                    <input type="text"  v-model="pro_name"  class="form-control" required>
+                                </div>
+                            </div>
+
 
                             <div class="form-row">
-                                <div class="col-md-6 form-group ">
-                                    <label>Email:</label>
-                                    <input type="text"  v-model="email" name="email" class="form-control" required>
-                                    <div class="invalid-feedback">
-                                        Valid first name is required.
-                                    </div>
+                                <div class="col-md-12 form-group ">
+                                    <label>Price:</label>
+                                    <input type="text"  v-model="price"  class="form-control" required>
                                 </div>
-                                <div class="col-md-6 form-group ">
-                                    <label>Address:</label>
-                                    <input type="text"  v-model="address" name="address" class="form-control" required>
 
-
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 form-group ">
+                                    <label>Quantity:</label>
+                                    <input type="text"  v-model="qty" class="form-control" required>
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn btn-primary" > Add To Cart </button>
+                            <div class="row">
+                                <div class="col-md-12 text-center ">
+                                    <button type="submit" class="btn btn-primary text-right" > Add To Cart </button>
+                                </div>
+                            </div>
                         </form>
                     </div></div><!-- end card-->
             </div>
@@ -76,28 +77,34 @@
 
                     <div class="card-body" id="collapseExample" >
 
-                        <div class="table-responsive table-bordered">
-                            <table class="table table-hover  table-striped">
+                        <div class="table-responsive ">
+                            <table class="table table-hover table-bordered table-striped">
                                 <thead>
                                 <tr>
-                                    <th>SL </th>
+                                    <!--<th>SL </th>-->
+                                    <th>Code</th>
                                     <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Address</th>
+                                    <th>Price</th>
+                                    <th>Qty</th>
+                                    <th>Total</th>
+                                    <th>Action</th>
                                 </tr>
                                 </thead>
 
-                                <tr v-for="(data, i) in rowData">
-                                    <td>{{i+1}}</td>
-                                    <td>{{data.name}}</td>
-                                    <td>{{data.phone}}</td>
-                                    <td>{{data.email}}</td>
-                                    <td>{{data.address}}</td>
+                                <tbody>
+
+                                <tr v-for="(data, i) in cartData">
+                                    <!--<td>{{i+1}}</td>-->
+                                    <td><input type="text"  :value='data.pro_code' class="form-control" readonly></td>
+                                    <td><input type="text"  :value='data.pro_name' class="form-control" readonly></td>
+                                    <td><input type="text"  :value='data.price' class="form-control"></td>
+                                    <td><input type="text"  :value='data.qty' class="form-control"></td>
+                                    <td><input type="text"  :value='data.price *data.qty' class="form-control" readonly></td>
+                                    <td >
+                                        <span class="btn btn-danger delete-btn" @click="deleteRow(i)" >Remove</span>
+                                    </td>
 
                                 </tr>
-
-                                <tbody>
 
                                 </tbody>
                             </table>
@@ -119,43 +126,97 @@
 
         data(){
             return {
+                cartData : [],
                 employees : null,
                 action : false,
-                name: '',
-                phone: '',
-                email: '',
-                address: '',
-                rowData:[] //the declared array
+                pro_code: '',
+                pro_name: '',
+                price: '',
+                qty: '',
+//                rowData:[],//the declared array
+               //the declared array
+
 
             }
         },
         mounted() {
             console.log('Component mounted.')
+            this.cartData =JSON.parse(localStorage.getItem('dataStore'));
 
-        },
-
-        computed:{
 
         },
 
         methods:{
-            addToCart(){
-                let my_object = {
-                name: this.name,
-                email: this.email,
-                address: this.address,
-                phone: this.phone,
-            };
-            this.rowData.push(my_object)
-            this.name = '';
-            this.email = '';
-            this.address = '';
-            this.phone = '';
 
+            addToCart(){
+
+                let my_object = {
+                    pro_code: this.pro_code,
+                    pro_name: this.pro_name,
+                    price: this.price,
+                    qty: this.qty,
+            };
+
+                this.cartData.push(my_object);
+                this.pro_code = '';
+                this.pro_name = '';
+                this.price = '';
+                this.qty = '';
+                localStorage.setItem('dataStore',JSON.stringify(this.cartData));
 
             },
+
+            deleteRow(index){
+                this.cartData.splice(index, 1);
+                localStorage.setItem('dataStore',JSON.stringify(this.cartData));
+            }
         }
 
 
     }
 </script>
+<style>
+    .table thead th {
+
+        border: 1px solid #000;
+        font-size: 14px;
+        background: #A6A8A7;
+        color: #000;
+        font-weight: bold;
+    }
+
+    .table tbody td {
+        border: 1px solid #A6A8A7;
+        font-size: 13px;
+        /*background: #f8f8f8;*/
+        color: #000;
+        padding: 5px 8px 5px 8px;
+
+    }
+    .table td, .table th {
+        padding: .40rem;
+        vertical-align: top;
+        border-top: 1px solid #A6A8A7;
+        font-size: 14px;
+        text-transform: none;
+        text-align: center;
+    }
+
+    .assign-btn, .update-btn , .delete-btn{
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    .vh-100 {
+        min-height: 100vh;
+    }
+    textarea.form-control{
+        height:50px;
+    }
+    input.form-control{
+        height:30px;
+        text-align:center;
+    }
+
+
+</style>

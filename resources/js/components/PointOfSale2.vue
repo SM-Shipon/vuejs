@@ -70,6 +70,13 @@
                                         <span class="btn btn-danger btn-md" @click="deleteRow(k, invoice_product)" >Remove</span>
                                     </td>
                                 </tr>
+                                <tr v-show="invoice_products.length === 0">
+                                    <td colspan="6">
+                                        <p class="text-center alert-danger p-2">
+                                            No products added/available.
+                                        </p>
+                                    </td>
+                                </tr>
                                 <tfoot>
                                 <tr>
                                     <td colspan="4" class="">Subtotal</td>
